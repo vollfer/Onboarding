@@ -28,7 +28,6 @@ class OnboardingContactPageView: UIPageViewController {
     private let pageControl: UIPageControl = {
         var pageControl = UIPageControl()
         pageControl.backgroundColor = .clear
-        pageControl.currentPageIndicatorTintColor = .red
         pageControl.isUserInteractionEnabled = false
         pageControl.hidesForSinglePage = true
         pageControl.translatesAutoresizingMaskIntoConstraints = false
@@ -55,16 +54,27 @@ class OnboardingContactPageView: UIPageViewController {
                
     private func drawSelf() {
       
-        view.backgroundColor = UIColor.black
+        view.systemBackground()
         
         guard guideViewControllers.count != 0, guideViewControllers.count != 1 else { return }
         
         
         view.addSubview(pageControl)
         
+        if #available(iOS 13.0, *) {
+            if self.traitCollection.userInterfaceStyle == .dark {
+                pageControl.currentPageIndicatorTintColor = .red
+            } else {
+                pageControl.currentPageIndicatorTintColor = .systemBlue
+                pageControl.pageIndicatorTintColor = .gray
+            }
+        } else {
+            pageControl.currentPageIndicatorTintColor = .red
+        }
+        
         NSLayoutConstraint.activate([
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pageControl.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150)
+            pageControl.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 125)
         ])
         
     }

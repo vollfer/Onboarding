@@ -25,8 +25,6 @@ class OnboardingContactView: UIViewController {
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         nextButton.layer.cornerRadius = 5
         nextButton.layer.borderWidth = 1
-        nextButton.setTitleColor(.white, for: .normal)
-        nextButton.layer.borderColor = UIColor.red.cgColor
         
         return nextButton
     }()
@@ -37,7 +35,7 @@ class OnboardingContactView: UIViewController {
         titleLable.minimumScaleFactor = 0.4
         titleLable.adjustsFontSizeToFitWidth = true
         titleLable.font = UIFont.systemFont(ofSize: 30, weight: .bold)
-        titleLable.textColor = .white
+        titleLable.systemTextColor()
         titleLable.translatesAutoresizingMaskIntoConstraints = false
         
         return titleLable
@@ -49,7 +47,7 @@ class OnboardingContactView: UIViewController {
         descriptionLabel.minimumScaleFactor = 0.4
         descriptionLabel.adjustsFontSizeToFitWidth = true
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.textColor = .white
+        descriptionLabel.systemTextColor()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         return descriptionLabel
@@ -124,6 +122,19 @@ class OnboardingContactView: UIViewController {
         
         nextButton.addTarget(self, action: #selector(nexxtAction), for: .touchUpInside)
         
+        if #available(iOS 13.0, *) {
+            if self.traitCollection.userInterfaceStyle == .dark {
+                 nextButton.setTitleColor(.white, for: .normal)
+                 nextButton.layer.borderColor = UIColor.red.cgColor
+            } else {
+                nextButton.setTitleColor(.black, for: .normal)
+                nextButton.layer.borderColor = UIColor.systemBlue.cgColor
+            }
+            
+        } else {
+            nextButton.setTitleColor(.white, for: .normal)
+            nextButton.layer.borderColor = UIColor.red.cgColor
+        }
         
         switch onbordingAllGame {
             
