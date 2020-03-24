@@ -1,5 +1,5 @@
 //
-//  OnboardingContactRouter.swift
+//  AllGameOnboardingRouter.swift
 //  ForFriends
 //
 //  Created by Александр  Бровков  on 04.03.2020.
@@ -8,26 +8,28 @@
 
 import UIKit
 
-protocol OnboardingContactPageRouterInput {
+protocol AllGameOnboardingPageRouterInput {
     func openMainScreen()
 }
 
-final class OnboardingContactRouter {
+final class AllGameOnboardingRouter {
     
     //MARK: - Properties
     
     unowned let transition: ModuleTransitionHandler
         
         
-        //MARK: - Init
+    //MARK: - Init
         
-        init(transition: ModuleTransitionHandler) {
-            self.transition = transition
-        }
-        
+    init(transition: ModuleTransitionHandler) {
+        self.transition = transition
     }
+    
+}
 
-extension OnboardingContactRouter: OnboardingContactPageRouterInput {
+
+//MARK: - OnboardingContactPageRouterInput
+extension AllGameOnboardingRouter: AllGameOnboardingPageRouterInput {
     
     func openMainScreen() {
 
